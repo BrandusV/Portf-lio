@@ -509,6 +509,35 @@ header.site-header {
   z-index: 23;
 }
 
+/* ── Piscar de olhos lento — upper eyelid desce e sobe ── */
+@keyframes portrait-eye-blink {
+  /* ciclo de 7s sincronizado com portrait-breathe */
+  0%,   80%          { transform: scaleY(0);    opacity: 0; }   /* olhos abertos */
+  83%                { transform: scaleY(1);    opacity: 1; }   /* fecha         */
+  87%                { transform: scaleY(0);    opacity: 0; }   /* abre          */
+  91%                { transform: scaleY(0.85); opacity: 1; }   /* pisca 2x      */
+  94%,  100%         { transform: scaleY(0);    opacity: 0; }   /* abre          */
+}
+
+/* ── Div de pálpebra superior ── */
+.portrait-eye-blink {
+  position: absolute;
+  left: 18%; right: 18%;        /* cobre só a área central dos olhos */
+  top: 37%;                     /* altura dos olhos num rosto close-up centralizado */
+  height: 10%;
+  background: linear-gradient(180deg,
+    rgba(15, 10, 12, 0.92) 0%,
+    rgba(30, 20, 25, 0.75) 70%,
+    transparent 100%
+  );
+  border-radius: 0 0 50% 50% / 0 0 80% 80%;   /* curva da pálpebra */
+  transform: scaleY(0);
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 28;
+  animation: portrait-eye-blink 7s ease-in-out infinite;
+}
+
 /* ── Imagem com flicker + glitch periódico ── */
 .living-portrait.cyber-glitch {
   animation:
