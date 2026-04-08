@@ -1,0 +1,9 @@
+{
+  "name": "neural-archive",
+  "version": "1.0.0",
+  "description": "NEURAL_ARCHIVE — Cyberpunk portfolio",
+  "scripts": {
+    "start": "cd backend && node server.js",
+    "dev": "cd backend && node --watch server.js"
+  }
+}
