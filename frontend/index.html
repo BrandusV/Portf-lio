@@ -74,31 +74,40 @@
     </div>
 
     <nav class="hidden md:flex gap-8 items-center font-['Space_Grotesk'] tracking-tighter uppercase">
-      <a data-page="index.html"
+      <a data-page="index.html" data-i18n="nav.home"
          class="text-[#00FFFF] border-b-2 border-[#00FFFF] pb-1 transition-all duration-150"
          href="index.html">Home</a>
-      <a data-page="career.html"
+      <a data-page="career.html" data-i18n="nav.career"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
          href="career.html">Career</a>
-      <a data-page="projects.html"
+      <a data-page="projects.html" data-i18n="nav.projects"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
          href="projects.html">Projects</a>
-      <a data-page="status.html"
+      <a data-page="status.html" data-i18n="nav.status"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
          href="status.html">Status</a>
     </nav>
 
-    <button id="menu-btn" class="material-symbols-outlined text-[#00FFFF] hover:text-[#ff51fa] transition-colors">
-      menu
-    </button>
+    <div class="flex items-center gap-2">
+      <!-- Language Switcher -->
+      <div id="lang-switcher" class="relative">
+        <button id="lang-btn" type="button" aria-label="Select language">
+          <span class="material-symbols-outlined">language</span>
+          <span id="lang-code">EN</span>
+        </button>
+        <div id="lang-dropdown" class="hidden"></div>
+      </div>
+      <button id="menu-btn" class="material-symbols-outlined text-[#00FFFF] hover:text-[#ff51fa] transition-colors">menu</button>
+    </div>
   </header>
 
   <!-- ==================== MOBILE MENU ==================== -->
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <button id="mobile-menu-close" class="close-btn material-symbols-outlined">close</button>
-    <a href="index.html">Home</a>
-    <a href="career.html">Career</a>
-    <a href="projects.html">Projects</a>
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="career.html" data-i18n="nav.career">Career</a>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a>
+    <a href="status.html" data-i18n="nav.status">Status</a>
   </div>
 
   <!-- ==================== DESKTOP SIDEBAR ==================== -->
@@ -124,7 +133,7 @@
       <div class="md:col-span-7 z-10" data-reveal>
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container mb-6 border-l-2 border-secondary">
           <span id="status-dot" class="w-2 h-2 bg-tertiary"></span>
-          <span class="text-secondary text-[10px] uppercase tracking-[0.2em] font-bold">SYSTEM_STATUS: ONLINE</span>
+          <span class="text-secondary text-[10px] uppercase tracking-[0.2em] font-bold" data-i18n="hero.badge">SYSTEM_STATUS: ONLINE</span>
         </div>
 
         <h1 class="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter text-on-surface">
@@ -132,7 +141,7 @@
           <span class="text-primary-container drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">K_ARCHITECT</span>
         </h1>
 
-        <p class="text-on-surface-variant max-w-xl mb-4 leading-relaxed font-light">
+        <p class="text-on-surface-variant max-w-xl mb-4 leading-relaxed font-light" data-i18n-html="hero.desc">
           Full-stack operative specializing in
           <span class="text-primary">high-frequency neural interfaces</span>
           and distributed ledger core architecture.
@@ -150,29 +159,29 @@
             class="bg-primary text-on-primary px-10 py-4 font-bold uppercase tracking-widest
                    glitch-hover transition-all active:translate-y-0.5"
           >
-            INITIALIZE_PROJECTS
+            <span data-i18n="hero.cta.projects">INITIALIZE_PROJECTS</span>
           </button>
           <button
             id="cta-contact"
             class="border border-outline-variant text-on-surface px-10 py-4 font-bold uppercase
                    tracking-widest hover:bg-surface-container-highest transition-all"
           >
-            &gt; CONTACT_DEV
+            <span data-i18n="hero.cta.contact">&gt; CONTACT_DEV</span>
           </button>
         </div>
 
         <!-- HUD Metadata -->
         <div class="mt-16 grid grid-cols-3 gap-4 opacity-50 text-[10px] font-mono tracking-widest uppercase">
           <div class="flex flex-col gap-1">
-            <span class="text-secondary">LATITUDE</span>
+            <span class="text-secondary" data-i18n="hero.hud.lat">LATITUDE</span>
             <span>40.7128° N</span>
           </div>
           <div class="flex flex-col gap-1">
-            <span class="text-secondary">LONGITUDE</span>
+            <span class="text-secondary" data-i18n="hero.hud.lon">LONGITUDE</span>
             <span>74.0060° W</span>
           </div>
           <div class="flex flex-col gap-1">
-            <span class="text-secondary">UPTIME</span>
+            <span class="text-secondary" data-i18n="hero.hud.uptime">UPTIME</span>
             <span id="uptime-display">99.982%</span>
           </div>
         </div>
@@ -226,7 +235,7 @@ AND status = 'ACTIVE';
 
           <!-- HUD overlay -->
           <div class="absolute bottom-6 left-6 z-20 bg-black/80 p-3 border-l-2 border-primary">
-            <div class="text-[10px] text-primary uppercase font-bold tracking-widest mb-1">TARGET_LOCKED</div>
+            <div class="text-[10px] text-primary uppercase font-bold tracking-widest mb-1" data-i18n="hero.hud.target">TARGET_LOCKED</div>
             <div class="text-xs font-mono">UID: 882-X-09</div>
           </div>
         </div>
@@ -236,10 +245,11 @@ AND status = 'ACTIVE';
     <!-- ---- PROJECTS PREVIEW ---- -->
     <section class="mt-32 container mx-auto px-6" data-reveal>
       <div class="flex justify-between items-end mb-12 border-b border-outline-variant pb-4">
-        <h2 class="text-4xl font-black tracking-tighter uppercase">ARCHIVED_EXPEDITIONS</h2>
+        <h2 class="text-4xl font-black tracking-tighter uppercase" data-i18n="preview.title">ARCHIVED_EXPEDITIONS</h2>
         <span
           id="view-all-link"
           class="text-secondary text-sm font-bold tracking-[0.3em] cursor-pointer hover:text-[#ff51fa] transition-colors"
+          data-i18n="preview.viewall"
         >VIEW_ALL_RECORDS</span>
       </div>
 
@@ -248,11 +258,11 @@ AND status = 'ACTIVE';
         <!-- Card 1 -->
         <div class="project-card bg-surface-container p-8 border-r border-b border-outline-variant relative group">
           <div class="hud-corner"></div>
-          <span class="text-primary text-[10px] font-bold mb-4 block tracking-widest">001 // WEB3</span>
+          <span class="text-primary text-[10px] font-bold mb-4 block tracking-widest" data-i18n="preview.p1.tag">001 // WEB3</span>
           <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter group-hover:text-primary-container transition-colors">
             CRYPTO_GATE
           </h3>
-          <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+          <p class="text-on-surface-variant text-sm mb-6 leading-relaxed" data-i18n="preview.p1.desc">
             Decentralized exchange aggregator with real-time liquidity tracking across 12 chains.
           </p>
           <div class="flex gap-2">
@@ -264,11 +274,11 @@ AND status = 'ACTIVE';
         <!-- Card 2 -->
         <div class="project-card bg-surface-container-high p-8 border-r border-b border-outline-variant relative group md:translate-y-8">
           <div class="hud-corner"></div>
-          <span class="text-secondary text-[10px] font-bold mb-4 block tracking-widest">002 // AI</span>
+          <span class="text-secondary text-[10px] font-bold mb-4 block tracking-widest" data-i18n="preview.p2.tag">002 // AI</span>
           <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter group-hover:text-secondary transition-colors">
             NEURAL_DREAM
           </h3>
-          <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+          <p class="text-on-surface-variant text-sm mb-6 leading-relaxed" data-i18n="preview.p2.desc">
             Generative interface for latent space navigation using transformer-based models.
           </p>
           <div class="flex gap-2">
@@ -280,11 +290,11 @@ AND status = 'ACTIVE';
         <!-- Card 3 -->
         <div class="project-card bg-surface-container p-8 border-b border-outline-variant relative group">
           <div class="hud-corner"></div>
-          <span class="text-tertiary text-[10px] font-bold mb-4 block tracking-widest">003 // HUD</span>
+          <span class="text-tertiary text-[10px] font-bold mb-4 block tracking-widest" data-i18n="preview.p3.tag">003 // HUD</span>
           <h3 class="text-2xl font-bold mb-4 uppercase tracking-tighter group-hover:text-tertiary transition-colors">
             CORE_INTERFACE
           </h3>
-          <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+          <p class="text-on-surface-variant text-sm mb-6 leading-relaxed" data-i18n="preview.p3.desc">
             Design system and UI kit for high-fidelity data visualization dashboards.
           </p>
           <div class="flex gap-2">
@@ -312,6 +322,7 @@ AND status = 'ACTIVE';
   </footer>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script src="js/home.js"></script>
 </body>

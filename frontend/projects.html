@@ -76,49 +76,60 @@
     <nav class="hidden md:flex gap-8 font-['Space_Grotesk'] tracking-tighter uppercase">
       <a data-page="index.html"
          class="text-white/60 font-medium hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="index.html">Home</a>
+         href="index.html" data-i18n="nav.home">Home</a>
       <a data-page="career.html"
          class="text-white/60 font-medium hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="career.html">Career</a>
+         href="career.html" data-i18n="nav.career">Career</a>
       <a data-page="projects.html"
          class="text-[#00FFFF] border-b-2 border-[#00FFFF] pb-1 font-medium transition-all duration-150"
-         href="projects.html">Projects</a>
+         href="projects.html" data-i18n="nav.projects">Projects</a>
       <a data-page="status.html"
          class="text-white/60 font-medium hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="status.html">Status</a>
+         href="status.html" data-i18n="nav.status">Status</a>
     </nav>
 
     <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
+      <!-- Language Switcher -->
+      <div id="lang-switcher" class="relative">
+        <button id="lang-btn" type="button" aria-label="Select language">
+          <span class="material-symbols-outlined">language</span>
+          <span id="lang-code">EN</span>
+        </button>
+        <div id="lang-dropdown" class="hidden"></div>
+      </div>
+
       <button id="menu-btn" class="material-symbols-outlined text-[#00FFFF] hover:text-[#ff51fa] transition-colors">menu</button>
+    </div>
     </div>
   </header>
 
   <!-- ==================== MOBILE MENU ==================== -->
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <button id="mobile-menu-close" class="close-btn material-symbols-outlined">close</button>
-    <a href="index.html">Home</a>
-    <a href="career.html">Career</a>
-    <a href="projects.html">Projects</a>
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="career.html" data-i18n="nav.career">Career</a>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a>
   </div>
 
   <!-- ==================== SIDEBAR ==================== -->
   <aside class="fixed left-0 top-0 h-full w-20 md:w-80 bg-black border-r border-[#ff51fa]/20 z-40 hidden md:flex flex-col p-8 pt-24">
     <div class="mb-12">
-      <h2 class="text-[#ff51fa] font-black font-['Space_Grotesk'] text-xs tracking-[0.3em] uppercase opacity-50 mb-4">SYSTEM_INDEX</h2>
+      <h2 class="text-[#ff51fa] font-black font-['Space_Grotesk'] text-xs tracking-[0.3em] uppercase opacity-50 mb-4" data-i18n="sidebar.index">SYSTEM_INDEX</h2>
       <div class="space-y-4">
-        <a class="group flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200 py-2" href="index.html">
+        <a class="group flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200 py-2" href="index.html" data-i18n="nav.home">
           <span class="material-symbols-outlined">home</span>
           <span class="font-['Space_Grotesk'] font-light uppercase tracking-widest text-sm hidden md:inline">Home</span>
         </a>
-        <a class="group flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200 py-2" href="career.html">
+        <a class="group flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200 py-2" href="career.html" data-i18n="nav.career">
           <span class="material-symbols-outlined">work</span>
           <span class="font-['Space_Grotesk'] font-light uppercase tracking-widest text-sm hidden md:inline">Career</span>
         </a>
-        <a class="group flex items-center gap-4 text-[#00FFFF] bg-[#1a191b] font-bold py-2 px-4 -ml-4" href="projects.html">
+        <a class="group flex items-center gap-4 text-[#00FFFF] bg-[#1a191b] font-bold py-2 px-4 -ml-4" href="projects.html" data-i18n="nav.projects">
           <span class="material-symbols-outlined">folder_open</span>
           <span class="font-['Space_Grotesk'] uppercase tracking-widest text-sm hidden md:inline">Projects</span>
         </a>
-        <a class="group flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200 py-2" href="status.html">
+        <a class="group flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200 py-2" href="status.html" data-i18n="nav.status">
           <span class="material-symbols-outlined">query_stats</span>
           <span class="font-['Space_Grotesk'] font-light uppercase tracking-widest text-sm hidden md:inline">Status</span>
         </a>
@@ -127,7 +138,7 @@
 
     <div class="mt-auto space-y-6">
       <div class="p-4 bg-surface-container-low border-l-2 border-tertiary">
-        <div class="text-[10px] text-tertiary font-bold tracking-tighter mb-1 uppercase hidden md:block">Memory Usage</div>
+        <div class="text-[10px] text-tertiary font-bold tracking-tighter mb-1 uppercase hidden md:block" data-i18n="sidebar.mem">Memory Usage</div>
         <div class="h-1 bg-surface-container-highest w-full overflow-hidden">
           <div class="h-full bg-tertiary w-2/3 shadow-[0_0_10px_#69fd5d]"></div>
         </div>
@@ -142,10 +153,10 @@
     <section class="mb-12" data-reveal>
       <div class="flex items-center gap-2 mb-2">
         <span class="w-3 h-3 bg-tertiary animate-pulse shadow-[0_0_10px_#69fd5d]"></span>
-        <span class="text-tertiary font-label text-xs tracking-widest uppercase font-bold">Operation Log: ACTIVE</span>
+        <span class="text-tertiary font-label text-xs tracking-widest uppercase font-bold" data-i18n="projects.log">Operation Log: ACTIVE</span>
       </div>
       <h1 class="text-4xl md:text-6xl font-headline font-extrabold uppercase tracking-tighter text-on-surface mb-4">
-        ARCHIVE: <span class="text-tertiary">COMPLETED_OPERATIONS</span>
+        ARCHIVE: <span class="text-tertiary" data-i18n="projects.title.span">COMPLETED_OPERATIONS</span>
       </h1>
       <p class="text-on-surface-variant max-w-2xl font-light text-lg">
         Decrypted historical data clusters representing successfully deployed architectural nodes and tactical interfaces. All systems nominal.
@@ -154,15 +165,15 @@
       <!-- Filter Bar -->
       <div class="flex flex-wrap gap-3 mt-8">
         <button class="filter-btn text-[10px] px-4 py-2 border border-outline-variant uppercase tracking-widest
-                       hover:border-tertiary transition-colors" data-filter="all">ALL</button>
+                       hover:border-tertiary transition-colors" data-filter="all" data-i18n="projects.filter.all">ALL</button>
         <button class="filter-btn text-[10px] px-4 py-2 border border-outline-variant uppercase tracking-widest
-                       hover:border-tertiary transition-colors" data-filter="web3">WEB3</button>
+                       hover:border-tertiary transition-colors" data-filter="web3" data-i18n="projects.filter.web3">WEB3</button>
         <button class="filter-btn text-[10px] px-4 py-2 border border-outline-variant uppercase tracking-widest
-                       hover:border-tertiary transition-colors" data-filter="ai">AI</button>
+                       hover:border-tertiary transition-colors" data-filter="ai" data-i18n="projects.filter.ai">AI</button>
         <button class="filter-btn text-[10px] px-4 py-2 border border-outline-variant uppercase tracking-widest
-                       hover:border-tertiary transition-colors" data-filter="hud">HUD</button>
+                       hover:border-tertiary transition-colors" data-filter="hud" data-i18n="projects.filter.hud">HUD</button>
         <button class="filter-btn text-[10px] px-4 py-2 border border-outline-variant uppercase tracking-widest
-                       hover:border-tertiary transition-colors" data-filter="system">SYSTEM</button>
+                       hover:border-tertiary transition-colors" data-filter="system" data-i18n="projects.filter.system">SYSTEM</button>
       </div>
     </section>
 
@@ -407,11 +418,11 @@
     <footer class="mt-20 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-8" data-reveal>
       <div class="flex gap-12">
         <div>
-          <div class="text-[10px] font-label text-on-surface/40 uppercase mb-1">TOTAL_OPS</div>
+          <div class="text-[10px] font-label text-on-surface/40 uppercase mb-1" data-i18n="projects.footer.ops">TOTAL_OPS</div>
           <div class="text-2xl font-headline font-black text-tertiary" id="stat-total-ops">00</div>
         </div>
         <div>
-          <div class="text-[10px] font-label text-on-surface/40 uppercase mb-1">DATA_SIZE</div>
+          <div class="text-[10px] font-label text-on-surface/40 uppercase mb-1" data-i18n="projects.footer.data">DATA_SIZE</div>
           <div class="text-2xl font-headline font-black text-tertiary">1.2 TB</div>
         </div>
         <div>
@@ -420,7 +431,7 @@
         </div>
       </div>
       <div class="flex items-center gap-4 text-on-surface/20">
-        <span class="text-xs uppercase tracking-[0.4em] font-label">SYSTEMS_SYNCHRONIZED</span>
+        <span class="text-xs uppercase tracking-[0.4em] font-label" data-i18n="projects.footer.sync">SYSTEMS_SYNCHRONIZED</span>
         <span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
       </div>
     </footer>
@@ -429,21 +440,22 @@
 
   <!-- ==================== BOTTOM NAV (Mobile) ==================== -->
   <nav class="bottom-nav">
-    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html" data-i18n="nav.home">
       <span class="material-symbols-outlined">code</span>
       <span class="text-[10px] uppercase tracking-widest">Home</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="career.html">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="career.html" data-i18n="nav.career">
       <span class="material-symbols-outlined">database</span>
       <span class="text-[10px] uppercase tracking-widest">Career</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="projects.html">
+    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="projects.html" data-i18n="nav.projects">
       <span class="material-symbols-outlined">folder_open</span>
       <span class="text-[10px] uppercase tracking-widest">Projects</span>
     </a>
   </nav>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script src="js/projects.js"></script>
 </body>

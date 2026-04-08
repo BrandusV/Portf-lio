@@ -11,20 +11,26 @@
   const el = document.getElementById('hero-typewriter');
   if (!el) return;
 
-  const phrases = [
-    'Full-stack operative.',
-    'Neural interface architect.',
-    'Protocol decryptor.',
-    'Distributed ledger engineer.',
-  ];
+  function getPhrases() {
+    return window.__i18n?.[window.getLang?.()]?.['hero.typewriter']
+      || ['Full-stack operative.', 'Neural interface architect.', 'Protocol decryptor.', 'Distributed ledger engineer.'];
+  }
 
+  let phrases = getPhrases();
   let phraseIdx = 0;
   let charIdx = 0;
   let deleting = false;
   const speed = { type: 60, delete: 30, pause: 1800 };
 
+  document.addEventListener('langchange', () => {
+    phrases = getPhrases();
+    phraseIdx = 0;
+    charIdx = 0;
+    deleting = false;
+  });
+
   function tick() {
-    const current = phrases[phraseIdx];
+    const current = phrases[phraseIdx % phrases.length];
     if (!deleting) {
       el.textContent = current.slice(0, ++charIdx);
       if (charIdx === current.length) {

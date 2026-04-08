@@ -120,18 +120,28 @@
 })();
 
 /* ============================================================
-   VALIDATION SEQUENCE — animated dots
+   VALIDATION SEQUENCE — animated dots (i18n-aware)
    ============================================================ */
 (function initValidationSequence() {
   const el = document.getElementById('validation-text');
   if (!el) return;
 
-  const base = 'Validation Sequence Running';
-  let dots = 0;
+  function getPhrases() {
+    return window.__i18n?.[window.getLang?.()]?.['career.validation'] || ['Validation Sequence Running'];
+  }
+
+  let phrases = getPhrases();
+  let phraseIdx = 0, dots = 0;
+
+  document.addEventListener('langchange', () => {
+    phrases = getPhrases();
+    phraseIdx = 0;
+  });
 
   setInterval(() => {
     dots = (dots + 1) % 4;
-    el.textContent = base + '.'.repeat(dots);
+    el.textContent = phrases[phraseIdx % phrases.length] + '.'.repeat(dots);
+    if (dots === 0) phraseIdx++;
   }, 500);
 })();
 

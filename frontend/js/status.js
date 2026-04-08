@@ -181,14 +181,21 @@ pushLog('[OK]    All streams loaded — standing by.');
 })();
 
 /* ============================================================
-   PROCESSING LABEL — animated cycling text
+   PROCESSING LABEL — animated cycling text (i18n-aware)
    ============================================================ */
 (function initProcessingLabel() {
   const el = document.getElementById('processing-label');
   if (!el) return;
 
-  const states = ['Processing...', 'Optimizing...', 'Syncing...', 'Encrypting...'];
+  function getStates() {
+    return window.__i18n?.[window.getLang?.()]?.['status.processing']
+      || ['Processing...', 'Optimizing...', 'Syncing...', 'Encrypting...'];
+  }
+
+  let states = getStates();
   let i = 0;
+
+  document.addEventListener('langchange', () => { states = getStates(); i = 0; });
 
   setInterval(() => {
     i = (i + 1) % states.length;

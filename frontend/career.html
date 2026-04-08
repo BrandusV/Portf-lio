@@ -70,27 +70,38 @@
     <nav class="hidden md:flex gap-8 font-['Space_Grotesk'] tracking-tighter uppercase">
       <a data-page="index.html"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="index.html">Home</a>
+         href="index.html" data-i18n="nav.home">Home</a>
       <a data-page="career.html"
          class="text-[#00FFFF] border-b-2 border-[#00FFFF] pb-1 transition-all duration-150"
-         href="career.html">Career</a>
+         href="career.html" data-i18n="nav.career">Career</a>
       <a data-page="projects.html"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="projects.html">Projects</a>
+         href="projects.html" data-i18n="nav.projects">Projects</a>
       <a data-page="status.html"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="status.html">Status</a>
+         href="status.html" data-i18n="nav.status">Status</a>
     </nav>
+    <div class="flex items-center gap-2">
+      <!-- Language Switcher -->
+      <div id="lang-switcher" class="relative">
+        <button id="lang-btn" type="button" aria-label="Select language">
+          <span class="material-symbols-outlined">language</span>
+          <span id="lang-code">EN</span>
+        </button>
+        <div id="lang-dropdown" class="hidden"></div>
+      </div>
+
 
     <button id="menu-btn" class="text-[#00FFFF] material-symbols-outlined scale-95 active:translate-y-0.5">menu</button>
+    </div>
   </header>
 
   <!-- ==================== MOBILE MENU ==================== -->
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <button id="mobile-menu-close" class="close-btn material-symbols-outlined">close</button>
-    <a href="index.html">Home</a>
-    <a href="career.html">Career</a>
-    <a href="projects.html">Projects</a>
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="career.html" data-i18n="nav.career">Career</a>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a>
   </div>
 
   <!-- ==================== LAYOUT WRAPPER ==================== -->
@@ -98,22 +109,22 @@
 
     <!-- ==================== SIDEBAR ==================== -->
     <aside class="hidden lg:flex h-full w-80 flex-shrink-0 flex-col p-8 bg-black border-r border-[#ff51fa]/20">
-      <h2 class="text-[#ff51fa] font-black mb-12 font-['Space_Grotesk'] text-xl tracking-[0.2em]">SYSTEM_INDEX</h2>
+      <h2 class="text-[#ff51fa] font-black mb-12 font-['Space_Grotesk'] text-xl tracking-[0.2em]" data-i18n="sidebar.index">SYSTEM_INDEX</h2>
 
       <div class="flex flex-col gap-6">
-        <a class="flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200" href="index.html">
+        <a class="flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200" href="index.html" data-i18n="nav.home">
           <span class="material-symbols-outlined">home</span>
           <span class="font-light uppercase tracking-widest text-sm">Home</span>
         </a>
-        <a class="flex items-center gap-4 text-[#00FFFF] bg-[#1a191b] font-bold p-3 -mx-3" href="career.html">
+        <a class="flex items-center gap-4 text-[#00FFFF] bg-[#1a191b] font-bold p-3 -mx-3" href="career.html" data-i18n="nav.career">
           <span class="material-symbols-outlined">work</span>
           <span class="font-light uppercase tracking-widest text-sm">Career</span>
         </a>
-        <a class="flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200" href="projects.html">
+        <a class="flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200" href="projects.html" data-i18n="nav.projects">
           <span class="material-symbols-outlined">folder_open</span>
           <span class="font-light uppercase tracking-widest text-sm">Projects</span>
         </a>
-        <a class="flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200" href="status.html">
+        <a class="flex items-center gap-4 text-white/60 hover:translate-x-2 hover:text-[#00FFFF] transition-transform duration-200" href="status.html" data-i18n="nav.status">
           <span class="material-symbols-outlined">query_stats</span>
           <span class="font-light uppercase tracking-widest text-sm">Status</span>
         </a>
@@ -123,8 +134,8 @@
       <div class="mt-auto pt-8 border-t border-outline-variant/20">
         <div class="bg-surface-container p-4">
           <div class="flex justify-between items-center mb-2">
-            <span class="text-[10px] text-tertiary uppercase tracking-tighter">Core Temp</span>
-            <span class="text-[10px] text-tertiary uppercase tracking-tighter">Optimal</span>
+            <span class="text-[10px] text-tertiary uppercase tracking-tighter" data-i18n="sidebar.coretemp">Core Temp</span>
+            <span class="text-[10px] text-tertiary uppercase tracking-tighter" data-i18n="sidebar.coretemp.ok">Optimal</span>
           </div>
           <div class="h-1 bg-surface-container-highest w-full">
             <div id="core-temp-bar" class="h-full bg-tertiary" style="width: 75%"></div>
@@ -141,7 +152,7 @@
         <div class="lg:col-span-7">
           <div class="flex items-center gap-2 mb-2">
             <span class="w-2 h-2 bg-tertiary"></span>
-            <span class="text-secondary text-xs uppercase tracking-[0.3em] font-bold">Accessing Profile_01</span>
+            <span class="text-secondary text-xs uppercase tracking-[0.3em] font-bold" data-i18n="career.accessing">Accessing Profile_01</span>
           </div>
           <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">CAREER_PATH</h1>
           <p class="text-on-surface-variant text-lg leading-relaxed max-w-2xl border-l-2 border-primary-container pl-6">
@@ -155,7 +166,7 @@
             <div class="absolute top-0 right-0 w-8 h-8 bg-tertiary/10 flex items-center justify-center">
               <span class="w-1 h-1 bg-tertiary"></span>
             </div>
-            <span class="text-[10px] text-secondary-dim uppercase tracking-widest block mb-2">Network Status</span>
+            <span class="text-[10px] text-secondary-dim uppercase tracking-widest block mb-2" data-i18n="career.net.status">Network Status</span>
             <div class="text-xl font-mono text-primary-dim">ENCRYPTED_LINK: ACTIVE</div>
             <div class="mt-4 flex gap-2">
               <div class="h-1 flex-1 bg-primary/20"></div>
@@ -173,7 +184,7 @@
         <section class="lg:col-span-1 bg-surface-container-low p-6 flex flex-col relative group" data-reveal>
           <div class="absolute top-0 right-0 w-1 h-full bg-secondary opacity-20"></div>
           <div class="flex justify-between items-start mb-8">
-            <h3 class="text-xl font-bold uppercase tracking-tight text-white">Biometric Data</h3>
+            <h3 class="text-xl font-bold uppercase tracking-tight text-white" data-i18n="career.bio.title">Biometric Data</h3>
             <span class="material-symbols-outlined text-secondary">fingerprint</span>
           </div>
 
@@ -187,15 +198,15 @@
 
           <div class="space-y-4">
             <div class="flex justify-between border-b border-outline-variant/20 pb-2">
-              <span class="text-xs uppercase text-on-surface-variant font-medium tracking-widest">Codename</span>
+              <span class="text-xs uppercase text-on-surface-variant font-medium tracking-widest" data-i18n="career.bio.codename">Codename</span>
               <span class="text-sm font-bold text-primary">NEURO_MANCER</span>
             </div>
             <div class="flex justify-between border-b border-outline-variant/20 pb-2">
-              <span class="text-xs uppercase text-on-surface-variant font-medium tracking-widest">Base_Location</span>
+              <span class="text-xs uppercase text-on-surface-variant font-medium tracking-widest" data-i18n="career.bio.location">Base_Location</span>
               <span class="text-sm font-bold">NEO_BERLIN</span>
             </div>
             <div class="flex justify-between border-b border-outline-variant/20 pb-2">
-              <span class="text-xs uppercase text-on-surface-variant font-medium tracking-widest">Clearance</span>
+              <span class="text-xs uppercase text-on-surface-variant font-medium tracking-widest" data-i18n="career.bio.clearance">Clearance</span>
               <span class="text-sm font-bold text-tertiary">LEVEL_09</span>
             </div>
           </div>
@@ -218,8 +229,8 @@
           </div>
           <div class="flex justify-between items-center mb-8">
             <div>
-              <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-1">Skill Matrix</h3>
-              <div class="text-[10px] text-tertiary uppercase tracking-widest">Cognitive Load Assessment</div>
+              <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-1" data-i18n="career.skills.title">Skill Matrix</h3>
+              <div class="text-[10px] text-tertiary uppercase tracking-widest" data-i18n="career.skills.sub">Cognitive Load Assessment</div>
             </div>
             <span class="material-symbols-outlined text-primary">grid_view</span>
           </div>
@@ -227,7 +238,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
             <div>
               <div class="flex justify-between items-end mb-2">
-                <span class="text-xs font-bold uppercase tracking-widest">Neural UI Engineering</span>
+                <span class="text-xs font-bold uppercase tracking-widest" data-i18n="career.skill.ui">Neural UI Engineering</span>
                 <span class="text-xs text-primary font-mono">98%</span>
               </div>
               <div class="h-2 bg-surface-container-highest">
@@ -237,7 +248,7 @@
 
             <div>
               <div class="flex justify-between items-end mb-2">
-                <span class="text-xs font-bold uppercase tracking-widest">Brutalist Frameworks</span>
+                <span class="text-xs font-bold uppercase tracking-widest" data-i18n="career.skill.brutalist">Brutalist Frameworks</span>
                 <span class="text-xs text-primary font-mono">92%</span>
               </div>
               <div class="h-2 bg-surface-container-highest">
@@ -247,7 +258,7 @@
 
             <div>
               <div class="flex justify-between items-end mb-2">
-                <span class="text-xs font-bold uppercase tracking-widest">Data Visualization</span>
+                <span class="text-xs font-bold uppercase tracking-widest" data-i18n="career.skill.datavis">Data Visualization</span>
                 <span class="text-xs text-primary font-mono">85%</span>
               </div>
               <div class="h-2 bg-surface-container-highest">
@@ -257,7 +268,7 @@
 
             <div>
               <div class="flex justify-between items-end mb-2">
-                <span class="text-xs font-bold uppercase tracking-widest">Sub-grid Logic</span>
+                <span class="text-xs font-bold uppercase tracking-widest" data-i18n="career.skill.subgrid">Sub-grid Logic</span>
                 <span class="text-xs text-primary font-mono">88%</span>
               </div>
               <div class="h-2 bg-surface-container-highest">
@@ -291,8 +302,8 @@
         <section class="lg:col-span-2 bg-surface-container-low p-8 border-t-2 border-tertiary" data-reveal>
           <div class="flex justify-between items-start mb-8">
             <div>
-              <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-1">Training Modules</h3>
-              <div class="text-[10px] text-on-surface-variant uppercase tracking-widest">Core Educational Tracks</div>
+              <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-1" data-i18n="career.training.title">Training Modules</h3>
+              <div class="text-[10px] text-on-surface-variant uppercase tracking-widest" data-i18n="career.training.sub">Core Educational Tracks</div>
             </div>
             <span class="material-symbols-outlined text-tertiary">model_training</span>
           </div>
@@ -302,14 +313,14 @@
                         hover:bg-surface-bright transition-all group cursor-pointer border border-transparent hover:border-tertiary/30">
               <div class="w-full md:w-32 h-20 bg-black flex-shrink-0 flex items-center justify-center font-mono text-tertiary text-2xl font-black">M_01</div>
               <div class="flex-1">
-                <h4 class="text-lg font-bold uppercase mb-1 group-hover:text-tertiary">Advanced Neural Interaction Design</h4>
+                <h4 class="text-lg font-bold uppercase mb-1 group-hover:text-tertiary" data-i18n="career.training.m1">Advanced Neural Interaction Design</h4>
                 <p class="text-sm text-on-surface-variant line-clamp-2 module-detail" style="max-height:3em;overflow:hidden;transition:max-height 0.4s ease">
                   Specialized training in BCI (Brain-Computer Interface) layout ergonomics and cognitive mapping.
                 </p>
               </div>
               <div class="text-right flex-shrink-0">
                 <span class="text-[10px] uppercase text-on-surface-variant block mb-1">Status</span>
-                <span class="text-xs text-tertiary font-bold uppercase px-2 py-1 bg-tertiary/10">Synchronized</span>
+                <span class="text-xs text-tertiary font-bold uppercase px-2 py-1 bg-tertiary/10" data-i18n="career.training.synced">Synchronized</span>
               </div>
             </div>
 
@@ -317,7 +328,7 @@
                         hover:bg-surface-bright transition-all group cursor-pointer border border-transparent hover:border-tertiary/30">
               <div class="w-full md:w-32 h-20 bg-black flex-shrink-0 flex items-center justify-center font-mono text-tertiary text-2xl font-black">M_02</div>
               <div class="flex-1">
-                <h4 class="text-lg font-bold uppercase mb-1 group-hover:text-tertiary">Brutalist Component Architecture</h4>
+                <h4 class="text-lg font-bold uppercase mb-1 group-hover:text-tertiary" data-i18n="career.training.m2">Brutalist Component Architecture</h4>
                 <p class="text-sm text-on-surface-variant line-clamp-2 module-detail" style="max-height:3em;overflow:hidden;transition:max-height 0.4s ease">
                   Engineering high-performance structural systems with 0ms latency and hard-edge design tokens.
                 </p>
@@ -336,25 +347,25 @@
             <span class="material-symbols-outlined text-[200px]">verified_user</span>
           </div>
           <div class="flex justify-between items-center mb-8">
-            <h3 class="text-xl font-bold uppercase tracking-tight text-white">Credential DB</h3>
+            <h3 class="text-xl font-bold uppercase tracking-tight text-white" data-i18n="career.cred.title">Credential DB</h3>
             <span class="material-symbols-outlined text-secondary">database</span>
           </div>
 
           <div class="grid grid-cols-1 gap-4">
             <div class="credential-card border-l-2 border-primary p-4 bg-surface-container hover:bg-surface-bright transition-colors cursor-pointer">
               <span class="text-[10px] text-primary uppercase font-bold tracking-widest block mb-1">ID: CERT_902</span>
-              <div class="text-sm font-bold uppercase mb-2">Master Interface Specialist</div>
-              <div class="text-[10px] text-on-surface-variant uppercase">Auth: Global Design Consortium</div>
+              <div class="text-sm font-bold uppercase mb-2" data-i18n="career.cred.c1">Master Interface Specialist</div>
+              <div class="text-[10px] text-on-surface-variant uppercase" data-i18n="career.cred.c1.auth">Auth: Global Design Consortium</div>
             </div>
             <div class="credential-card border-l-2 border-secondary p-4 bg-surface-container hover:bg-surface-bright transition-colors cursor-pointer">
               <span class="text-[10px] text-secondary uppercase font-bold tracking-widest block mb-1">ID: CERT_414</span>
-              <div class="text-sm font-bold uppercase mb-2">Full-Stack Decryptor</div>
-              <div class="text-[10px] text-on-surface-variant uppercase">Auth: Neural Net Security</div>
+              <div class="text-sm font-bold uppercase mb-2" data-i18n="career.cred.c2">Full-Stack Decryptor</div>
+              <div class="text-[10px] text-on-surface-variant uppercase" data-i18n="career.cred.c2.auth">Auth: Neural Net Security</div>
             </div>
             <div class="credential-card border-l-2 border-tertiary p-4 bg-surface-container hover:bg-surface-bright transition-colors cursor-pointer">
               <span class="text-[10px] text-tertiary uppercase font-bold tracking-widest block mb-1">ID: CERT_001</span>
-              <div class="text-sm font-bold uppercase mb-2">System Architect Prime</div>
-              <div class="text-[10px] text-on-surface-variant uppercase">Auth: Core Systems Institute</div>
+              <div class="text-sm font-bold uppercase mb-2" data-i18n="career.cred.c3">System Architect Prime</div>
+              <div class="text-[10px] text-on-surface-variant uppercase" data-i18n="career.cred.c3.auth">Auth: Core Systems Institute</div>
             </div>
           </div>
 
@@ -372,21 +383,22 @@
 
   <!-- ==================== BOTTOM NAV (Mobile) ==================== -->
   <nav class="bottom-nav md:hidden">
-    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html" data-i18n="nav.home">
       <span class="material-symbols-outlined">code</span>
       <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">Code</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="career.html">
+    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="career.html" data-i18n="nav.career">
       <span class="material-symbols-outlined">database</span>
       <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">Career</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="projects.html">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="projects.html" data-i18n="nav.projects">
       <span class="material-symbols-outlined">folder_open</span>
       <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">Projects</span>
     </a>
   </nav>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script src="js/career.js"></script>
 </body>

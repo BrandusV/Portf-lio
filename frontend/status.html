@@ -89,16 +89,16 @@
     <nav class="hidden md:flex gap-8 items-center font-['Space_Grotesk'] tracking-tighter uppercase">
       <a data-page="index.html"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="index.html">Home</a>
+         href="index.html" data-i18n="nav.home">Home</a>
       <a data-page="career.html"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="career.html">Career</a>
+         href="career.html" data-i18n="nav.career">Career</a>
       <a data-page="projects.html"
          class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
-         href="projects.html">Projects</a>
+         href="projects.html" data-i18n="nav.projects">Projects</a>
       <a data-page="status.html"
          class="text-[#00FFFF] border-b-2 border-[#00FFFF] pb-1 transition-all duration-150"
-         href="status.html">Status</a>
+         href="status.html" data-i18n="nav.status">Status</a>
     </nav>
 
     <span
@@ -110,10 +110,10 @@
   <!-- ==================== MOBILE MENU ==================== -->
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <button id="mobile-menu-close" class="close-btn material-symbols-outlined">close</button>
-    <a href="index.html">Home</a>
-    <a href="career.html">Career</a>
-    <a href="projects.html">Projects</a>
-    <a href="status.html">Status</a>
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="career.html" data-i18n="nav.career">Career</a>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a>
+    <a href="status.html" data-i18n="nav.status">Status</a>
   </div>
 
   <!-- ==================== MAIN ==================== -->
@@ -123,10 +123,10 @@
     <div class="mb-12 relative" data-reveal>
       <div class="flex items-center gap-4 mb-2">
         <div class="h-1 w-12 bg-secondary"></div>
-        <span class="text-secondary font-label text-sm tracking-[0.3em] uppercase">System_Active_Interface</span>
+        <span class="text-secondary font-label text-sm tracking-[0.3em] uppercase" data-i18n="status.system">System_Active_Interface</span>
       </div>
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-headline tracking-tighter uppercase glitch-text">
-        ACTIVE_STREAMS: <span class="text-secondary">IN_PROGRESS</span>
+        ACTIVE_STREAMS: <span class="text-secondary" data-i18n="status.title.span">IN_PROGRESS</span>
       </h1>
       <div class="absolute -right-4 top-0 opacity-10 pointer-events-none select-none hidden lg:block">
         <span class="text-9xl font-black text-outline">010101</span>
@@ -178,22 +178,22 @@
       <!-- Stats Card -->
       <div class="md:col-span-4 bg-surface-container-high p-6 flex flex-col justify-between border-l border-secondary/20" data-reveal>
         <div>
-          <h4 class="text-on-surface font-label text-xs tracking-widest uppercase mb-6 opacity-60">Global_Uptime</h4>
+          <h4 class="text-on-surface font-label text-xs tracking-widest uppercase mb-6 opacity-60" data-i18n="status.uptime.label">Global_Uptime</h4>
           <div class="flex items-baseline gap-2 mb-8">
             <span class="text-5xl font-bold text-on-surface" id="uptime-pct">99.8</span>
             <span class="text-secondary text-xl font-mono">%</span>
           </div>
           <div class="space-y-4">
             <div class="flex justify-between items-center py-2 border-b border-outline-variant">
-              <span class="text-xs text-on-surface-variant uppercase">Nodes Active</span>
+              <span class="text-xs text-on-surface-variant uppercase" data-i18n="status.nodes">Nodes Active</span>
               <span class="text-xs text-tertiary font-mono" id="nodes-count">1,024</span>
             </div>
             <div class="flex justify-between items-center py-2 border-b border-outline-variant">
-              <span class="text-xs text-on-surface-variant uppercase">Threat Level</span>
+              <span class="text-xs text-on-surface-variant uppercase" data-i18n="status.threat">Threat Level</span>
               <span class="text-xs text-error font-mono" id="threat-level">Minimal</span>
             </div>
             <div class="flex justify-between items-center py-2 border-b border-outline-variant">
-              <span class="text-xs text-on-surface-variant uppercase">Latency (ms)</span>
+              <span class="text-xs text-on-surface-variant uppercase" data-i18n="status.latency">Latency (ms)</span>
               <span class="text-xs text-primary font-mono" id="latency-val">4</span>
             </div>
           </div>
@@ -229,7 +229,7 @@
         </div>
 
         <div class="flex items-center gap-3 mb-6">
-          <span class="text-[10px] text-tertiary font-mono px-2 py-1 bg-tertiary/10">STABLE</span>
+          <span class="text-[10px] text-tertiary font-mono px-2 py-1 bg-tertiary/10" data-i18n="status.stable">STABLE</span>
           <span class="text-[10px] text-on-surface-variant font-mono">v.2.0.4</span>
         </div>
 
@@ -268,7 +268,7 @@
         </div>
 
         <div class="flex items-center gap-3 mb-6">
-          <span class="text-[10px] text-secondary font-mono px-2 py-1 bg-secondary/10">URGENT</span>
+          <span class="text-[10px] text-secondary font-mono px-2 py-1 bg-secondary/10" data-i18n="status.urgent">URGENT</span>
           <span class="text-[10px] text-on-surface-variant font-mono">PRIORITY_HIGH</span>
         </div>
 
@@ -288,8 +288,8 @@
       <div class="md:col-span-12 bg-black border border-secondary/30 p-8 flex flex-col md:flex-row items-center
                   justify-between gap-6 group hover:border-secondary transition-all" data-reveal>
         <div class="max-w-xl">
-          <h3 class="text-2xl font-bold font-headline uppercase mb-2">INITIATE_NEW_STREAM?</h3>
-          <p class="text-on-surface-variant text-sm">Provision additional compute nodes for encrypted freelance engagement.</p>
+          <h3 class="text-2xl font-bold font-headline uppercase mb-2" data-i18n="status.cta.title">INITIATE_NEW_STREAM?</h3>
+          <p class="text-on-surface-variant text-sm" data-i18n="status.cta.desc">Provision additional compute nodes for encrypted freelance engagement.</p>
         </div>
         <button
           id="establish-connection-btn"
@@ -306,7 +306,7 @@
     <div class="mt-12 bg-black border border-outline-variant/30 p-6" data-reveal>
       <div class="flex items-center gap-3 mb-4">
         <span class="material-symbols-outlined text-tertiary text-sm">terminal</span>
-        <span class="text-[10px] text-tertiary uppercase tracking-widest font-bold">LIVE_SYSTEM_LOG</span>
+        <span class="text-[10px] text-tertiary uppercase tracking-widest font-bold" data-i18n="status.log.title">LIVE_SYSTEM_LOG</span>
         <span class="ml-auto text-[10px] text-on-surface/30 font-mono" id="log-timestamp">--:--:--</span>
       </div>
       <div id="live-log" class="font-mono text-[11px] text-on-surface/60 space-y-1 h-32 overflow-y-auto">
@@ -318,21 +318,22 @@
 
   <!-- ==================== BOTTOM NAV (Mobile) ==================== -->
   <nav class="bottom-nav">
-    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html" data-i18n="nav.home">
       <span class="material-symbols-outlined">code</span>
       <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Dev</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="status.html">
+    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="status.html" data-i18n="nav.status">
       <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">database</span>
       <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Streams</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="career.html">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="career.html" data-i18n="nav.career">
       <span class="material-symbols-outlined">account_circle</span>
       <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Agent</span>
     </a>
   </nav>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script src="js/status.js"></script>
 </body>
