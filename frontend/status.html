@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEURAL_ARCHIVE // STATUS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#006767", "error-container": "#9f0519", "outline": "#767576",
+            "inverse-primary": "#006a6a", "surface-bright": "#2c2c2d",
+            "secondary-fixed": "#ffbdf3", "primary-container": "#00ffff",
+            "primary": "#c1fffe", "error-dim": "#d7383b", "tertiary": "#69fd5d",
+            "on-primary-fixed": "#004343", "on-surface-variant": "#adaaab",
+            "secondary-fixed-dim": "#ffa6f3", "error": "#ff716c",
+            "tertiary-fixed-dim": "#49e043", "on-primary-container": "#005d5d",
+            "secondary": "#ff51fa", "surface-container-high": "#201f21",
+            "on-tertiary-fixed-variant": "#005f07", "on-tertiary-fixed": "#003e03",
+            "surface-container": "#1a191b", "on-primary-fixed-variant": "#006262",
+            "on-secondary-fixed-variant": "#920091", "on-error": "#490006",
+            "background": "#0e0e0f", "primary-dim": "#00e6e6",
+            "tertiary-container": "#59ee50", "on-secondary": "#400040",
+            "on-error-container": "#ffa8a3", "on-background": "#ffffff",
+            "on-secondary-fixed": "#620061", "inverse-on-surface": "#565556",
+            "surface-variant": "#262627", "surface-tint": "#c1fffe",
+            "on-tertiary": "#005e07", "primary-fixed-dim": "#00e6e6",
+            "secondary-dim": "#ff51fa", "surface": "#0e0e0f",
+            "inverse-surface": "#fcf8f9", "on-tertiary-container": "#005406",
+            "tertiary-fixed": "#59ee50", "primary-fixed": "#00f5f5",
+            "on-surface": "#ffffff", "secondary-container": "#a900a9",
+            "surface-container-low": "#131314", "outline-variant": "#484849",
+            "surface-container-highest": "#262627", "tertiary-dim": "#49e043",
+            "on-secondary-container": "#fff5f9", "surface-dim": "#0e0e0f",
+            "surface-container-lowest": "#000000"
+          },
+          fontFamily: { headline: ["Space Grotesk"], body: ["Space Grotesk"], label: ["Space Grotesk"] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* Live progress bar animation */
+    .stream-bar {
+      height: 100%;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Glitch text on hover */
+    .glitch-text:hover {
+      text-shadow: 2px 0 #ff51fa, -2px 0 #00ffff;
+    }
+
+    /* Node pulse ring */
+    @keyframes node-ping {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50%       { transform: scale(1.4); opacity: 0; }
+    }
+    .node-ping { animation: node-ping 1.5s ease-in-out infinite; }
+  </style>
+</head>
+
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen">
+
+  <!-- Scanline overlay -->
+  <div class="scanline-overlay"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-[#00FFFF]">terminal</span>
+      <span
+        id="site-logo"
+        class="text-2xl font-bold text-[#00FFFF] drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]
+               hover:skew-x-12 transition-transform font-['Space_Grotesk'] tracking-tighter uppercase cursor-pointer"
+      >NEURAL_ARCHIVE</span>
+    </div>
+
+    <nav class="hidden md:flex gap-8 items-center font-['Space_Grotesk'] tracking-tighter uppercase">
+      <a data-page="index.html"
+         class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
+         href="index.html">Home</a>
+      <a data-page="career.html"
+         class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
+         href="career.html">Career</a>
+      <a data-page="projects.html"
+         class="text-white opacity-70 hover:text-[#ff51fa] hover:drop-shadow-[0_0_5px_#ff51fa] transition-all duration-150"
+         href="projects.html">Projects</a>
+      <a data-page="status.html"
+         class="text-[#00FFFF] border-b-2 border-[#00FFFF] pb-1 transition-all duration-150"
+         href="status.html">Status</a>
+    </nav>
+
+    <span
+      id="menu-btn"
+      class="material-symbols-outlined text-[#00FFFF] scale-95 active:translate-y-0.5 cursor-pointer hover:text-[#ff51fa] transition-colors"
+    >menu</span>
+  </header>
+
+  <!-- ==================== MOBILE MENU ==================== -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button id="mobile-menu-close" class="close-btn material-symbols-outlined">close</button>
+    <a href="index.html">Home</a>
+    <a href="career.html">Career</a>
+    <a href="projects.html">Projects</a>
+    <a href="status.html">Status</a>
+  </div>
+
+  <!-- ==================== MAIN ==================== -->
+  <main class="min-h-screen pt-24 pb-32 px-6 md:px-12 lg:px-24">
+
+    <!-- Page Header -->
+    <div class="mb-12 relative" data-reveal>
+      <div class="flex items-center gap-4 mb-2">
+        <div class="h-1 w-12 bg-secondary"></div>
+        <span class="text-secondary font-label text-sm tracking-[0.3em] uppercase">System_Active_Interface</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-headline tracking-tighter uppercase glitch-text">
+        ACTIVE_STREAMS: <span class="text-secondary">IN_PROGRESS</span>
+      </h1>
+      <div class="absolute -right-4 top-0 opacity-10 pointer-events-none select-none hidden lg:block">
+        <span class="text-9xl font-black text-outline">010101</span>
+      </div>
+    </div>
+
+    <!-- ==================== BENTO GRID ==================== -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+      <!-- Main Stream Card -->
+      <div class="md:col-span-8 bg-surface-container p-8 relative overflow-hidden group" data-reveal>
+        <!-- Corner accents -->
+        <div class="absolute top-0 right-0 w-1 h-12 bg-tertiary"></div>
+        <div class="absolute top-0 right-0 h-1 w-12 bg-tertiary"></div>
+
+        <div class="flex flex-col h-full">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <span class="text-secondary font-label text-xs tracking-widest uppercase mb-1 block">ID: ALPHA_772</span>
+              <h3 class="text-3xl font-bold font-headline text-on-surface uppercase mb-2">PROJECT: NEURAL_LINK_V4</h3>
+            </div>
+            <div class="flex flex-col items-end">
+              <span class="text-tertiary text-xs font-label uppercase" id="processing-label">Processing...</span>
+              <span class="text-on-surface-variant font-mono text-[10px]">74.82.11.02</span>
+            </div>
+          </div>
+
+          <p class="text-on-surface-variant mb-12 max-w-2xl leading-relaxed">
+            Establishing synchronous bi-directional data flow between cortical implants and decentralized memory nodes.
+            High-latency mitigation in progress.
+          </p>
+
+          <div class="mt-auto">
+            <div class="flex justify-between items-end mb-2">
+              <span class="text-on-surface-variant text-[10px] font-label uppercase" id="alpha-label">Buffer: 89% Complete</span>
+              <span class="text-secondary font-mono text-xl" id="alpha-pct">89.02%</span>
+            </div>
+            <div class="w-full h-1 bg-surface-container-highest relative">
+              <div
+                id="alpha-bar"
+                class="stream-bar absolute top-0 left-0 bg-secondary shadow-[0_0_10px_#ff51fa]"
+                style="width: 89.02%"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Card -->
+      <div class="md:col-span-4 bg-surface-container-high p-6 flex flex-col justify-between border-l border-secondary/20" data-reveal>
+        <div>
+          <h4 class="text-on-surface font-label text-xs tracking-widest uppercase mb-6 opacity-60">Global_Uptime</h4>
+          <div class="flex items-baseline gap-2 mb-8">
+            <span class="text-5xl font-bold text-on-surface" id="uptime-pct">99.8</span>
+            <span class="text-secondary text-xl font-mono">%</span>
+          </div>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+              <span class="text-xs text-on-surface-variant uppercase">Nodes Active</span>
+              <span class="text-xs text-tertiary font-mono" id="nodes-count">1,024</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+              <span class="text-xs text-on-surface-variant uppercase">Threat Level</span>
+              <span class="text-xs text-error font-mono" id="threat-level">Minimal</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+              <span class="text-xs text-on-surface-variant uppercase">Latency (ms)</span>
+              <span class="text-xs text-primary font-mono" id="latency-val">4</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7EaK77G25vtG1EjQtkhraovFFbNFZtis7dFg4OG7yDD-7DgTBlVjb3DlM71hvaTxgtoArSQP6-ifJfA8XYSIw4cWjEGmi68vOfpUWdz4lOAHC1DixhnPpofTty9iIBDe9FAr0jVh5ta97MkRC11fp0LJlP2MWOuGSXOTxNueCXzO8YzvKzLQVCwqWdKckCSRff38gxAoYMGhbpLwUJ7P87A263FU-aqCra_T7uzhZIx6Sa9ApD0D-Mt2rJjRoXnEt0BR-c2-bc5s"
+            alt="Abstract digital network visualization"
+            class="w-full grayscale hover:grayscale-0 transition-all duration-500 opacity-40 hover:opacity-100"
+          />
+        </div>
+      </div>
+
+      <!-- Stream Card 2 -->
+      <div class="md:col-span-6 bg-surface-container p-6 relative group" data-reveal>
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <span class="text-secondary font-label text-[10px] uppercase block mb-1">Stream: Omega_Void</span>
+            <h4 class="text-xl font-bold font-headline text-on-surface uppercase">SHADOW_REEDER_PROTOCOL</h4>
+          </div>
+          <span class="material-symbols-outlined text-secondary text-sm">security</span>
+        </div>
+
+        <div class="mb-8">
+          <div class="flex justify-between text-[10px] mb-1">
+            <span class="text-on-surface-variant uppercase">Decrypting...</span>
+            <span class="text-secondary" id="omega-pct">42%</span>
+          </div>
+          <div class="w-full h-1 bg-surface-container-highest">
+            <div id="omega-bar" class="stream-bar bg-secondary" style="width: 42%"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-[10px] text-tertiary font-mono px-2 py-1 bg-tertiary/10">STABLE</span>
+          <span class="text-[10px] text-on-surface-variant font-mono">v.2.0.4</span>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex gap-3">
+          <button class="stream-action-btn text-[10px] border border-outline-variant px-4 py-2 uppercase tracking-widest
+                         hover:border-secondary hover:text-secondary transition-colors" data-stream="omega">
+            INSPECT
+          </button>
+          <button class="stream-pause-btn text-[10px] border border-outline-variant px-4 py-2 uppercase tracking-widest
+                         hover:border-error hover:text-error transition-colors" data-stream="omega">
+            PAUSE
+          </button>
+        </div>
+      </div>
+
+      <!-- Stream Card 3 -->
+      <div class="md:col-span-6 bg-surface-container-low p-6 relative group" data-reveal>
+        <div class="absolute top-2 right-2 w-1 h-1 bg-tertiary"></div>
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <span class="text-secondary font-label text-[10px] uppercase block mb-1">Stream: Neon_Flesh</span>
+            <h4 class="text-xl font-bold font-headline text-on-surface uppercase">BIO_SYNTH_UPGRADE</h4>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-sm">bolt</span>
+        </div>
+
+        <div class="mb-8">
+          <div class="flex justify-between text-[10px] mb-1">
+            <span class="text-on-surface-variant uppercase">Optimizing...</span>
+            <span class="text-secondary" id="neon-pct">67%</span>
+          </div>
+          <div class="w-full h-1 bg-surface-container-highest">
+            <div id="neon-bar" class="stream-bar bg-secondary" style="width: 67%"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-[10px] text-secondary font-mono px-2 py-1 bg-secondary/10">URGENT</span>
+          <span class="text-[10px] text-on-surface-variant font-mono">PRIORITY_HIGH</span>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="stream-action-btn text-[10px] border border-outline-variant px-4 py-2 uppercase tracking-widest
+                         hover:border-secondary hover:text-secondary transition-colors" data-stream="neon">
+            INSPECT
+          </button>
+          <button class="stream-pause-btn text-[10px] border border-outline-variant px-4 py-2 uppercase tracking-widest
+                         hover:border-error hover:text-error transition-colors" data-stream="neon">
+            PAUSE
+          </button>
+        </div>
+      </div>
+
+      <!-- CTA Card: Initiate New Stream -->
+      <div class="md:col-span-12 bg-black border border-secondary/30 p-8 flex flex-col md:flex-row items-center
+                  justify-between gap-6 group hover:border-secondary transition-all" data-reveal>
+        <div class="max-w-xl">
+          <h3 class="text-2xl font-bold font-headline uppercase mb-2">INITIATE_NEW_STREAM?</h3>
+          <p class="text-on-surface-variant text-sm">Provision additional compute nodes for encrypted freelance engagement.</p>
+        </div>
+        <button
+          id="establish-connection-btn"
+          class="w-full md:w-auto px-8 py-4 bg-secondary text-on-secondary font-bold uppercase tracking-widest
+                 text-sm hover:shadow-[0_0_15px_#ff51fa] transition-all"
+        >
+          Establish Connection &gt;
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Live Log Terminal -->
+    <div class="mt-12 bg-black border border-outline-variant/30 p-6" data-reveal>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="material-symbols-outlined text-tertiary text-sm">terminal</span>
+        <span class="text-[10px] text-tertiary uppercase tracking-widest font-bold">LIVE_SYSTEM_LOG</span>
+        <span class="ml-auto text-[10px] text-on-surface/30 font-mono" id="log-timestamp">--:--:--</span>
+      </div>
+      <div id="live-log" class="font-mono text-[11px] text-on-surface/60 space-y-1 h-32 overflow-y-auto">
+        <!-- Populated by status.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== BOTTOM NAV (Mobile) ==================== -->
+  <nav class="bottom-nav">
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="index.html">
+      <span class="material-symbols-outlined">code</span>
+      <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Dev</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-[#00FFFF] drop-shadow-[0_0_10px_#00FFFF]" href="status.html">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">database</span>
+      <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Streams</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-white/40 hover:text-[#69fd5d] transition-colors" href="career.html">
+      <span class="material-symbols-outlined">account_circle</span>
+      <span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Agent</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/status.js"></script>
+</body>
+</html>

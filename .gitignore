@@ -1,0 +1,5 @@
+node_modules/
+backend/.env
+backend/data/cv.pdf
+.DS_Store
+Thumbs.db

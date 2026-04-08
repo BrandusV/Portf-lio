@@ -1,0 +1,231 @@
+/* ============================================================
+   NEURAL_ARCHIVE — Shared Styles
+   ============================================================ */
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+  min-height: max(884px, 100dvh);
+}
+
+/* ---------- Scanline overlay ---------- */
+.scanline-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ---------- HUD corner accent ---------- */
+.hud-corner {
+  width: 4px; height: 4px;
+  background-color: #69fd5d;
+  position: absolute;
+  top: 0; right: 0;
+}
+
+/* ---------- Glitch hover ---------- */
+.glitch-hover:hover {
+  box-shadow: 2px 0 0 #ff51fa, -2px 0 0 #00ffff;
+}
+
+/* ---------- Material Icons ---------- */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ---------- Header ---------- */
+header.site-header {
+  position: fixed;
+  top: 0; width: 100%;
+  z-index: 50;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 15px rgba(0,255,255,0.1);
+}
+
+/* ---------- Sidebar ---------- */
+.site-sidebar {
+  position: fixed;
+  left: 0; top: 0;
+  height: 100%;
+  width: 5rem;
+  border-right: 1px solid rgba(255,81,250,0.2);
+  background: #000;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 0 2rem;
+}
+
+@media (min-width: 1280px) {
+  .site-sidebar { display: flex; }
+}
+
+/* ---------- Mobile bottom nav ---------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 4rem;
+  padding: 0 1rem;
+  width: min(400px, 90%);
+  background: rgba(14,14,15,0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,255,255,0.3);
+  box-shadow: 0 0 20px rgba(255,81,250,0.2);
+}
+
+@media (min-width: 768px) {
+  .bottom-nav { display: none; }
+}
+
+/* ---------- Mobile menu overlay ---------- */
+#mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mobile-menu.open {
+  transform: translateY(0);
+}
+
+#mobile-menu a {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  color: #fff;
+  transition: color 0.15s;
+}
+
+#mobile-menu a:hover { color: #00ffff; }
+
+#mobile-menu .close-btn {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: none;
+  border: none;
+  color: #00ffff;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+/* ---------- Skill bar animation ---------- */
+.skill-bar {
+  height: 100%;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-bar.animate { width: var(--target-width); }
+
+/* ---------- Corner clip ---------- */
+.corner-accent {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+/* ---------- Notification toast ---------- */
+#toast {
+  position: fixed;
+  bottom: 6rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(2rem);
+  opacity: 0;
+  z-index: 300;
+  background: #1a191b;
+  border-left: 3px solid #69fd5d;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Contact form feedback ---------- */
+.form-field-error {
+  border-color: #ff716c !important;
+}
+
+.form-field-success {
+  border-color: #69fd5d !important;
+}
+
+/* ---------- Project card hover ---------- */
+.project-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.08);
+}
+
+/* ---------- Glitch text animation ---------- */
+@keyframes glitch {
+  0%   { text-shadow: 2px 0 #ff51fa, -2px 0 #00ffff; }
+  25%  { text-shadow: -2px 0 #ff51fa, 2px 0 #00ffff; }
+  50%  { text-shadow: 2px 0 #00ffff, -2px 0 #ff51fa; }
+  75%  { text-shadow: -2px 0 #00ffff, 2px 0 #ff51fa; }
+  100% { text-shadow: 2px 0 #ff51fa, -2px 0 #00ffff; }
+}
+
+.glitch-anim {
+  animation: glitch 0.3s steps(1) infinite;
+}
+
+/* ---------- Uptime counter ---------- */
+#uptime-display {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Cursor blink ---------- */
+@keyframes blink { 50% { opacity: 0; } }
+.cursor-blink { animation: blink 1s step-start infinite; }
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #484849; }
+::-webkit-scrollbar-thumb:hover { background: #00ffff; }
