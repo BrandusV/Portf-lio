@@ -280,3 +280,245 @@ header.site-header {
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: #484849; }
 ::-webkit-scrollbar-thumb:hover { background: #00ffff; }
+
+/* ============================================================
+   Living Portrait — Harry Potter animated frame effect
+   ============================================================ */
+
+/* ── Keyframe: idle breathing loop (imagem sempre visível, cor presente) ── */
+@keyframes portrait-breathe {
+  0%   { transform: scale(1.00) translateY(0px)   translateX(0px)    rotate(0deg);    filter: brightness(1.0)  contrast(1.1)  saturate(0.85); }
+  18%  { transform: scale(1.02) translateY(-5px)  translateX(1.5px)  rotate(0.35deg); filter: brightness(1.05) contrast(1.05) saturate(0.95); }
+  36%  { transform: scale(1.04) translateY(-9px)  translateX(-2px)   rotate(-0.3deg); filter: brightness(1.1)  contrast(1.0)  saturate(1.1);  }
+  54%  { transform: scale(1.03) translateY(-7px)  translateX(2.5px)  rotate(0.25deg); filter: brightness(1.07) contrast(1.05) saturate(1.05); }
+  72%  { transform: scale(1.02) translateY(-4px)  translateX(-1px)   rotate(-0.15deg);filter: brightness(1.03) contrast(1.08) saturate(0.92); }
+  88%  { transform: scale(1.01) translateY(-2px)  translateX(0.5px)  rotate(0.08deg); filter: brightness(1.01) contrast(1.09) saturate(0.88); }
+  100% { transform: scale(1.00) translateY(0px)   translateX(0px)    rotate(0deg);    filter: brightness(1.0)  contrast(1.1)  saturate(0.85); }
+}
+
+/* ── Keyframe: hover — retrato acorda, movimento expressivo ── */
+@keyframes portrait-alive {
+  0%   { transform: scale(1.04) translateY(-6px)  translateX(0px)   rotate(0deg);    filter: brightness(1.12) contrast(1.05) saturate(1.3); }
+  22%  { transform: scale(1.07) translateY(-11px) translateX(3px)   rotate(0.6deg);  filter: brightness(1.15) contrast(1.0)  saturate(1.4); }
+  45%  { transform: scale(1.06) translateY(-9px)  translateX(-2.5px) rotate(-0.4deg);filter: brightness(1.13) contrast(1.05) saturate(1.35);}
+  68%  { transform: scale(1.07) translateY(-12px) translateX(2px)   rotate(0.3deg);  filter: brightness(1.15) contrast(1.02) saturate(1.38);}
+  85%  { transform: scale(1.05) translateY(-8px)  translateX(-1px)  rotate(-0.2deg); filter: brightness(1.12) contrast(1.03) saturate(1.32);}
+  100% { transform: scale(1.04) translateY(-6px)  translateX(0px)   rotate(0deg);    filter: brightness(1.12) contrast(1.05) saturate(1.3); }
+}
+
+/* ── Keyframe: varredura de luz (shimmer) ── */
+@keyframes portrait-shimmer {
+  0%   { transform: translateX(-160%) skewX(-12deg); opacity: 0;   }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translateX(260%)  skewX(-12deg); opacity: 0;   }
+}
+
+/* ── Keyframe: pulso de vinheta ── */
+@keyframes portrait-vignette-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 0.25; }
+}
+
+/* ── Wrapper base ── */
+.living-portrait-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Camada de shimmer de luz ciano */
+.living-portrait-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.06) 35%,
+    rgba(255, 255, 255, 0.13) 50%,
+    rgba(0, 255, 255, 0.06) 65%,
+    transparent 100%
+  );
+  animation: portrait-shimmer 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 25;
+}
+
+/* Camada de vinheta radial */
+.living-portrait-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, transparent 45%, rgba(0,0,0,0.5) 100%);
+  animation: portrait-vignette-pulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 24;
+}
+
+/* ── Imagem do retrato — animação idle ── */
+.living-portrait {
+  display: block;
+  animation: portrait-breathe 7s ease-in-out infinite;
+  transform-origin: center 38%;
+  will-change: transform, filter;
+}
+
+/* ── Hover: retrato acorda ── */
+.living-portrait-wrapper:hover .living-portrait {
+  animation: portrait-alive 4.5s ease-in-out infinite;
+}
+
+/* Shimmer acelera no hover */
+.living-portrait-wrapper:hover::before {
+  animation: portrait-shimmer 2.5s ease-in-out infinite;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(0, 255, 255, 0.1) 65%,
+    transparent 100%
+  );
+}
+
+/* ── Variante Home ──
+   A imagem fica sobre o code-scroll background sem mix-blend-screen
+   (que tornava a foto invisível no fundo preto)                        */
+.living-portrait-wrapper--home::before { z-index: 15; }
+.living-portrait-wrapper--home::after  { z-index: 14; }
+
+/* ============================================================
+   Cyberpunk Portrait Frame — background + overlays
+   ============================================================ */
+
+/* ── Scan beam vertical que varre o retrato ── */
+@keyframes cyber-scanbeam {
+  0%   { top: -6px;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 105%;   opacity: 0; }
+}
+
+/* ── Flicker ocasional da imagem (glitch de energia) ── */
+@keyframes cyber-flicker {
+  0%,  89%, 91%, 93%, 100% { opacity: 1;    filter: none; }
+  90%  { opacity: 0.6; filter: brightness(1.4) hue-rotate(15deg); }
+  92%  { opacity: 0.9; filter: brightness(0.8) hue-rotate(-10deg); }
+  94%  { opacity: 0.7; filter: brightness(1.2) hue-rotate(20deg); }
+}
+
+/* ── Glitch de deslocamento horizontal periódico ── */
+@keyframes cyber-glitch-h {
+  0%,  85%, 100% { transform: translateX(0)  skewX(0deg); }
+  86% { transform: translateX(-4px) skewX(-1deg); filter: hue-rotate(90deg); }
+  87% { transform: translateX( 4px) skewX( 1deg); }
+  88% { transform: translateX(-2px) skewX( 0.5deg); filter: hue-rotate(-60deg); }
+  89% { transform: translateX(0)    skewX(0deg); filter: none; }
+}
+
+/* ── Pulse neon na borda ── */
+@keyframes cyber-border-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(0,255,255,0.25),  inset 0 0 12px rgba(0,0,0,0.6); }
+  50%       { box-shadow: 0 0 18px rgba(0,255,255,0.5), 0 0 35px rgba(255,81,250,0.15), inset 0 0 20px rgba(0,0,0,0.7); }
+}
+
+/* ── Frame cyberpunk base ── */
+.cyber-portrait-frame {
+  background:
+    repeating-linear-gradient(0deg,   rgba(0,255,255,0.035) 0px, rgba(0,255,255,0.035) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(90deg,  rgba(0,255,255,0.035) 0px, rgba(0,255,255,0.035) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(0deg,   rgba(255,81,250,0.015) 0px, rgba(255,81,250,0.015) 1px, transparent 1px, transparent 7px),
+    #040407 !important;
+  border: 1px solid rgba(0,255,255,0.3) !important;
+  animation: cyber-border-pulse 4s ease-in-out infinite;
+}
+
+/* ── Beam de scan vertical ── */
+.portrait-scanbeam {
+  position: absolute;
+  left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0,255,255,0.15) 20%,
+    rgba(0,255,255,0.55) 50%,
+    rgba(0,255,255,0.15) 80%,
+    transparent 100%
+  );
+  filter: blur(1.5px);
+  animation: cyber-scanbeam 5s linear infinite;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* ── Corner brackets HUD ── */
+.cyber-corner {
+  position: absolute;
+  width: 14px; height: 14px;
+  pointer-events: none;
+  z-index: 31;
+}
+.cyber-corner--tl { top: 6px;    left: 6px;    border-top:    2px solid #00ffff; border-left:  2px solid #00ffff; }
+.cyber-corner--tr { top: 6px;    right: 6px;   border-top:    2px solid #ff51fa; border-right: 2px solid #ff51fa; }
+.cyber-corner--bl { bottom: 6px; left: 6px;    border-bottom: 2px solid #ff51fa; border-left:  2px solid #ff51fa; }
+.cyber-corner--br { bottom: 6px; right: 6px;   border-bottom: 2px solid #00ffff; border-right: 2px solid #00ffff; }
+
+/* ── Status label no topo ── */
+.portrait-status-tag {
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  font-family: 'Space Grotesk', monospace;
+  color: rgba(0,255,255,0.65);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 31;
+  white-space: nowrap;
+}
+
+/* ── Overlay de cor neon (gradiente diagonal) ── */
+.portrait-color-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,81,250,0.07) 0%,
+    transparent 45%,
+    rgba(0,255,255,0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 22;
+}
+
+/* ── Scanlines horizontais finas ── */
+.portrait-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.18) 3px,
+    rgba(0,0,0,0.18) 4px
+  );
+  pointer-events: none;
+  z-index: 23;
+}
+
+/* ── Imagem com flicker + glitch periódico ── */
+.living-portrait.cyber-glitch {
+  animation:
+    portrait-breathe  7s   ease-in-out infinite,
+    cyber-flicker    18s   steps(1)    infinite,
+    cyber-glitch-h   22s   steps(1)    infinite;
+}
+
+.living-portrait-wrapper:hover .living-portrait.cyber-glitch {
+  animation:
+    portrait-alive   4.5s  ease-in-out infinite,
+    cyber-flicker    10s   steps(1)    infinite;
+}
