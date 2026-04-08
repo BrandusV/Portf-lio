@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const rateLimit = require('express-rate-limit');
 
 const contactRoute = require('./routes/contact');
@@ -25,8 +26,34 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: false }));
 
 // Serve static frontend files
-const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
+const FRONTEND_DIR = path.resolve(__dirname, '..', 'frontend');
+console.log('[NEURAL_ARCHIVE] Frontend dir:', FRONTEND_DIR);
+
+if (!fs.existsSync(FRONTEND_DIR)) {
+  console.error('[NEURAL_ARCHIVE] ERROR: frontend directory not found at', FRONTEND_DIR);
+}
+
 app.use(express.static(FRONTEND_DIR));
+
+// Explicit HTML page routes — serve each page at both /page and /page.html
+const HTML_PAGES = ['index', 'career', 'projects', 'status', 'contact'];
+HTML_PAGES.forEach(page => {
+  const file = page + '.html';
+  const sendPage = (req, res) => {
+    const filePath = path.join(FRONTEND_DIR, file);
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath);
+    } else {
+      res.status(404).json({ error: 'PAGE_NOT_FOUND', page: file });
+    }
+  };
+  if (page === 'index') {
+    app.get('/', sendPage);
+  } else {
+    app.get(`/${page}`, sendPage);
+    app.get(`/${file}`, sendPage);
+  }
+});
 
 // Global rate limiter
 const globalLimiter = rateLimit({
@@ -56,7 +83,13 @@ app.get('/api/health', (req, res) => {
 
 // SPA fallback — serve index.html for any unknown route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(FRONTEND_DIR, 'index.html'));
+  const indexPath = path.join(FRONTEND_DIR, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    console.error('[SPA FALLBACK] index.html not found at:', indexPath);
+    res.status(404).json({ error: 'FRONTEND_NOT_FOUND', path: indexPath });
+  }
 });
 
 /* ============================================================

@@ -36,7 +36,8 @@
   if (!btn) return;
 
   btn.addEventListener('click', async () => {
-    btn.textContent = 'REQUESTING...';
+    const span = btn.querySelector('span[data-i18n]');
+    if (span) span.textContent = 'REQUESTING...'; else btn.textContent = 'REQUESTING...';
     btn.disabled = true;
 
     try {
@@ -57,7 +58,8 @@
       // Fallback: show message (no actual file in demo)
       showToast('CV_DOWNLOAD: FILE NOT FOUND ON SERVER', 'error');
     } finally {
-      btn.textContent = 'DOWNLOAD_CV';
+      const label = window.t?.('career.cv.btn') || 'DOWNLOAD_CV';
+      if (span) span.textContent = label; else btn.textContent = label;
       btn.disabled = false;
     }
   });

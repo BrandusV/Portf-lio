@@ -96,7 +96,9 @@
     if (!valid) return;
 
     // Submit
-    submitBtn.textContent = 'TRANSMITTING...';
+    const submitSpan = submitBtn.querySelector('span[data-i18n]');
+    const setSubmitText = (t) => { if (submitSpan) submitSpan.textContent = t; else submitBtn.textContent = t; };
+    setSubmitText('TRANSMITTING...');
     submitBtn.disabled = true;
 
     try {
@@ -124,7 +126,7 @@
       showStatus('CONNECTION ERROR — check your network and retry.', 'error');
       showToast('NETWORK ERROR', 'error');
     } finally {
-      submitBtn.textContent = 'TRANSMIT >';
+      setSubmitText(window.t?.('contact.submit') || 'TRANSMIT >');
       submitBtn.disabled = false;
     }
   });

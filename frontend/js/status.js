@@ -67,7 +67,9 @@ function tickStreams() {
       if (!stream) return;
 
       stream.paused = !stream.paused;
-      btn.textContent = stream.paused ? 'RESUME' : 'PAUSE';
+      btn.textContent = stream.paused
+        ? (window.t?.('status.resume') || 'RESUME')
+        : (window.t?.('status.pause') || 'PAUSE');
       btn.style.borderColor = stream.paused ? '#69fd5d' : '';
       btn.style.color = stream.paused ? '#69fd5d' : '';
 
@@ -86,18 +88,20 @@ function tickStreams() {
   if (!btn) return;
 
   btn.addEventListener('click', () => {
-    btn.textContent = 'ESTABLISHING...';
+    const span = btn.querySelector('span[data-i18n]');
+    const setText = (t) => { if (span) span.textContent = t; else btn.textContent = t; };
+    setText('ESTABLISHING...');
     btn.disabled = true;
 
     setTimeout(() => {
       pushLog('[INIT] New compute node provisioned — awaiting handshake.');
       showToast('NEW STREAM: CONNECTION ESTABLISHED');
-      btn.textContent = 'STREAM ACTIVE >';
+      setText('STREAM ACTIVE >');
       btn.style.background = '#69fd5d';
       btn.style.color = '#000';
 
       setTimeout(() => {
-        btn.textContent = 'Establish Connection >';
+        setText(window.t?.('status.cta.btn') || 'Establish Connection >');
         btn.style.background = '';
         btn.style.color = '';
         btn.disabled = false;
